@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawer : MonoBehaviour
+public class ITemSpawer1 : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] itmePrb; // 아이템 프리팹 배열
@@ -28,6 +28,8 @@ public class ItemSpawer : MonoBehaviour
                 itemPool.Add(item); // 풀에 추가
             }
         }
+
+        Debug.Log($"풀 초기화: 총 {poolSize * itmePrb.Length}개의 오브젝트 생성");
     }
 
     void Update()
@@ -48,26 +50,27 @@ public class ItemSpawer : MonoBehaviour
             {
                 item.transform.position = transform.position; // 생성 위치 설정
                 item.SetActive(true); // 활성화
-                Debug.Log("아이템" + result);
+                Debug.Log($"아이템 활성화: {result}");
             }
         }
     }
 
     private GameObject GetInactiveItem(int prefabIndex)
     {
-        // 지정된 프리팹 인덱스와 일치하는 비활성화된 오브젝트 반환
         foreach (GameObject item in itemPool)
         {
             if (!item.activeInHierarchy && item.name.StartsWith(itmePrb[prefabIndex].name))
             {
+                Debug.Log("재사용: " + prefabIndex);
                 return item;
-                Debug.Log("아이템" + prefabIndex);
             }
         }
-        return null; // 사용 가능한 오브젝트가 없으면 null 반환
+
+        // 풀에 사용 가능한 오브젝트가 없으면 새로 생성
+        Debug.Log("새로운 아이템 생성: " + prefabIndex);
+        GameObject newItem = Instantiate(itmePrb[prefabIndex]);
+        newItem.SetActive(false);
+        itemPool.Add(newItem);
+        return newItem;
     }
-
-
-
-
 }

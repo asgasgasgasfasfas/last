@@ -4,23 +4,41 @@ using UnityEngine;
 
 public class ScoreUP : MonoBehaviour
 {
-    public PlayerControl playerController;
+    private PlayerControl playerController;
     public int item = 1;
 
     // 파이프 통과시 점수
     private void Awake()
     {
-        //tip 현재 코드에서는 한번만 호출하기 떄문에 ondie() 함수에서 바로 호출해도 되지만
-        //오브젝트 풀링을 이욧ㅇ해 오브젝트를 재사용할 경우에는 최소 1번만  find  를 이용해
-        //   playerController 의 정보를 저장해두고 사용하는 것이 연산에 효율적이다
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
-        //부닥친 적의 정보를 얻어오는 코드
-          itmePrb = GetComponent<Item>();
+        // PlayerControl 찾기
+        playerController = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerControl>();
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerControl을 찾을 수 없습니다. Player 태그와 컴포넌트를 확인하세요.");
+        }
+        playerController.BestScore = PlayerPrefs.GetInt("BestScore", 5);
+        //   Debug.Log("시작! 현재 점수: " + playerController.Score);
+        playerController.Score = 0;
+    }
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        playerController.Score = 1 * item;
-        Debug.Log(playerController.Score);
+        Debug.Log($"충돌한 오브젝트: {other.gameObject.name}");
+
+        if (playerController != null)
+        {
+            playerController.Score += 1 * item;
+            Debug.Log("파이프 통과! 현재 점수: " + item);
+            if (playerController.Score > playerController.BestScore)
+            {
+                playerController.Score = playerController.BestScore  ;
+               // Debug.Log("///" + playerController.Score + playerController.BestScore);
+            }
+        }
+        else
+        {
+            Debug.LogError("PlayerControl이 null입니다. Awake()에서 제대로 초기화되었는지 확인하세요.");
+        }
     }
+
 }
