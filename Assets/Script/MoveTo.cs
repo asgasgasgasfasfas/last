@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class MoveTo : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 3f;
-    [SerializeField]
-    private Vector3 moveDirection = Vector3.left;
+    
+    public float speed = 3f;
+    public Vector3 moveDirection = Vector3.left;
 
 
 

@@ -48,7 +48,8 @@ public class ITemSpawer1 : MonoBehaviour
             GameObject item = GetInactiveItem(result);
             if (item != null)
             {
-                item.transform.position = transform.position; // 생성 위치 설정
+                float randomY = Random.Range(-2.5f, 4.8f);
+                item.transform.position = new Vector3(4, randomY, 0); // 생성 위치 설정
                 item.SetActive(true); // 활성화
                 Debug.Log($"아이템 활성화: {result}");
             }
