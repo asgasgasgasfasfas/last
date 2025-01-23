@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class ITemAbility : MonoBehaviour
 {
-    private ScoreUP item;
+    private int item;
     [SerializeField]
-    private int multiply;
+    private int multiply = 3;
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) 
         {
-             item = GetComponent<ScoreUP>();
-            Debug.Log("배율"+ item.item);
+            PlayerControl item = collision.GetComponent<PlayerControl>();
+            Debug.Log("배율"+ item);
             if (item != null)
             {
-                Debug.Log($"기존 Item 값: {item.item}");
+                Debug.Log($"기존 Item 값: {item.itemAbility}");
                 Debug.Log($"Multiply 값: {multiply}");
 
                 // 아이템 효과 적용
-                item.item = multiply;
-                Debug.Log($"새로운 Item 값: {item.item}");
+                item.itemAbility = multiply;
+                Debug.Log($"새로운 Item 값: {item.itemAbility}");
             }
 
 

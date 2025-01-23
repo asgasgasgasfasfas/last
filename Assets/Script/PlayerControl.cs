@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float   jumppower = 5f;
     Rigidbody2D     rigidbody2D2;
+    public int      itemAbility = 1;
     private int     bestScore   = 0;
     private int     score;
     public int Score
@@ -38,13 +39,9 @@ public class PlayerControl : MonoBehaviour
         {
             rigidbody2D2.velocity = Vector3.up * jumppower;
 
-            if(Score <= BestScore)
-            {
-                score =  BestScore;
-            }
         }
 
-       // Control();
+        Control();
 
 
     }
