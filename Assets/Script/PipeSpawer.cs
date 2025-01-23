@@ -11,7 +11,7 @@ public class PipeSpawer : MonoBehaviour
     private List<GameObject> PipePool; // 利 钱 府胶飘
     private float spawnTimer = 0; // 利 积己 鸥捞赣
 
-    public float spawnInterval = 0.01f;  //利积己 埃拜
+    public float spawnInterval = 1.0f;  //利积己 埃拜
 
 
 
