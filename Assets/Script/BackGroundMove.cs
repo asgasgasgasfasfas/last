@@ -7,7 +7,7 @@ public class BackGroundMove : MonoBehaviour
     [SerializeField]
     private Transform target;   //7.09 0.5 
     [SerializeField]
-    private float scrollRange = 7.09f;
+    private float scrollRange = 14.43f;
     [SerializeField]
     private float moveSpeed = 3.0f;
     [SerializeField]

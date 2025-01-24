@@ -108,7 +108,7 @@ public class PlayerControl : MonoBehaviour
             PlayerPrefs.Save();
            //  Debug.Log(score + "ddd" + bestScore);
 
-             SceneManager.LoadScene("GameOver");
+           //  SceneManager.LoadScene("GameOver");
 
 
     }
