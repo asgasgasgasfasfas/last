@@ -24,7 +24,7 @@ public class ScoreUP : MonoBehaviour
         item = other.GetComponent<PlayerControl>().itemAbility;
 
         playerController.Score += 1 * item;
-            Debug.Log("파이프 통과! 현재 점수: " + playerController.Score);
+           // Debug.Log("파이프 통과! 현재 점수: " + playerController.Score);
             if (playerController.Score >= playerController.BestScore)
             {
                 playerController.BestScore = playerController.Score;

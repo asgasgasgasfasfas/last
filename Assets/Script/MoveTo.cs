@@ -6,7 +6,7 @@ public class MoveTo : MonoBehaviour
 {
     
     public float speed = 3f;
-    public Vector3 moveDirection = Vector3.left;
+    public Vector3 moveDirection = Vector3.zero;
 
 
 

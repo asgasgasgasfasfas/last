@@ -46,7 +46,7 @@ public class ITemAbility : MonoBehaviour
         MoveTo moveTo = GetComponent<MoveTo>();
         moveTo.speed = 0f;
 
-        transform.position = new Vector3(0.8f, 4.36f, 0);
+        transform.position = new Vector3(2.44f, 8.63f, 0);
 
         countdownText.StartCountdown(10f);
 

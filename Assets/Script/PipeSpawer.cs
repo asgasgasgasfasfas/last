@@ -43,7 +43,7 @@ public class PipeSpawer : MonoBehaviour
         {
             if (Pipe.activeInHierarchy)
             {
-                if (Pipe.transform.position.x < -5.0f)
+                if (Pipe.transform.position.x < -7.0f)
                 {
                     Pipe.SetActive(false);
                 }
@@ -72,8 +72,8 @@ public class PipeSpawer : MonoBehaviour
         private void SpawnPipe()
         {
         GameObject Pipe = GetPooledPipe();
-        float randomY = Random.Range(-2.5f, 4.8f); // ·£´ý YÀ§Ä¡
-        Pipe.transform.position = new Vector3(4, randomY, 0);
+        float randomY = Random.Range(-3.0f, 7.0f); // ·£´ý YÀ§Ä¡
+        Pipe.transform.position = new Vector3(10, randomY, 0);
         Pipe.SetActive(true);
 
         }

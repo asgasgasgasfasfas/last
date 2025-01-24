@@ -29,7 +29,7 @@ public class ITemSpawer1 : MonoBehaviour
             }
         }
 
-        Debug.Log($"풀 초기화: 총 {poolSize * itmePrb.Length}개의 오브젝트 생성");
+      //  Debug.Log($"풀 초기화: 총 {poolSize * itmePrb.Length}개의 오브젝트 생성");
     }
 
     void Update()
@@ -49,7 +49,7 @@ public class ITemSpawer1 : MonoBehaviour
             if (item != null)
             {
                 float randomY = Random.Range(-2.5f, 4.8f);
-                item.transform.position = new Vector3(4, randomY, 0); // 생성 위치 설정
+                item.transform.position = new Vector3(10, randomY, 0); // 생성 위치 설정
                 item.SetActive(true); // 활성화
                 Debug.Log($"아이템 활성화: {result}");
             }
