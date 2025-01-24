@@ -113,8 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80076fad14a03a4abc92a027c66d979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiply: 3
-  countdownText: {fileID: 0}
+  multiply: 2
 --- !u!61 &5007755164793383471
 BoxCollider2D:
   m_ObjectHideFlags: 0

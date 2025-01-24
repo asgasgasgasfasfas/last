@@ -7,13 +7,14 @@ public class ITemAbility : MonoBehaviour
     private int item;
     [SerializeField]
     private int multiply = 3;
-    [SerializeField]
+
     private CountdownText countdownText;
 
 
-    private void Awake()
-    {
-        countdownText = GameObject.Find("CountdownText");
+  private void Awake()
+  {
+        GameObject textObject = GameObject.Find("TextItem");
+        countdownText = textObject.GetComponent<CountdownText>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,10 +26,10 @@ public class ITemAbility : MonoBehaviour
             {
                 Debug.Log($"기존 Item 값: {playerControl.itemAbility}");
                 Debug.Log($"Multiply 값: {multiply}");
-
-
+            
+            
                 Debug.Log($"새로운 Item 값: {playerControl.itemAbility}");
-
+            
                 StartCoroutine(ItemEffectt(playerControl));
             }
 
