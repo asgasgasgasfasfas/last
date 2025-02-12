@@ -7,20 +7,20 @@ public class BackGroundMove : MonoBehaviour
     [SerializeField]
     private Transform target;   //7.09 0.5 
     [SerializeField]
-    private float scrollRange = 14.43f;
+    private float scrollRange = 177.14f;
     [SerializeField]
     private float moveSpeed = 3.0f;
     [SerializeField]
     private Vector3 moveDirection = Vector3.left;
 
 
-    private void Update()
+    private void Update()  
     {
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
+        
         if (transform.position.x <= -scrollRange)
         {
-            transform.position = transform.position + Vector3.right * scrollRange * 2;
+            transform.position = transform.position + Vector3.right * (177.14f - 150f -2f);
         }
     }
 }

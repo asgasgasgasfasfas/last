@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
+    [SerializeField] 
+    private GameObject gameOverPanel;
     private MoveTo  moveto;
     [SerializeField]
     private StageData stageData;
@@ -103,16 +105,29 @@ public class PlayerControl : MonoBehaviour
             bestScore = score;
         }
         
+            // 점수 저장 
             PlayerPrefs.SetInt("Score", score);
             PlayerPrefs.SetInt("BestScore", bestScore);
             PlayerPrefs.Save();
-           //  Debug.Log(score + "ddd" + bestScore);
 
-           //  SceneManager.LoadScene("GameOver");
+        //게임 정지 초기화
+        Time.timeScale = 0;
 
+
+
+
+
+        //패널 보이기
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+
+        Debug.Log("게임 오버! 패널 활성화됨.");
 
     }
 
+    // 영역 설정
     private void LateUpdate()
     {
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, stageData.LimitMin.x, stageData.LimitMax.x),
