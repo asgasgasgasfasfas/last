@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
         set => bestScore = Mathf.Max(0, value);
         get => bestScore;
     }
-    void Start()
+    void GameStart()
     {
         score = 0;
         rigidbody2D2 = GetComponent<Rigidbody2D>();

@@ -2,55 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeSpawer : MonoBehaviour
+public class PipeSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject PipePrefab;
     [SerializeField]
+    private Transform panelTransform; // 패널의 Transform을 가져옴
+    [SerializeField]
     private int poolSize = 10;
-    private List<GameObject> PipePool; // 적 풀 리스트
-    private float spawnTimer = 0; // 적 생성 타이머
 
-    public float spawnInterval = 1.0f;  //적생성 간격
-
-
+    private List<GameObject> PipePool;
+    private float spawnTimer = 0;
+    public float spawnInterval = 1.0f;
+    private bool isSpawning = false; // 파이프 생성 여부
 
     private void Start()
     {
-        //적풀 초기화
         PipePool = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject Pipe = Instantiate(PipePrefab);
+            GameObject Pipe = Instantiate(PipePrefab, panelTransform); // 부모 설정
             Pipe.SetActive(false);
             PipePool.Add(Pipe);
         }
-
     }
-    // Update is called once per frame
+
+    public void StartSpawning() // 외부에서 호출 가능하도록 public 메서드 추가
+    {
+        isSpawning = true;
+    }
+
     void Update()
     {
+        if (!isSpawning) return;
         spawnTimer += Time.deltaTime;
-
-        //스폰 간격에 따라 적 생성
         if (spawnTimer >= spawnInterval)
         {
             SpawnPipe();
             spawnTimer = 0;
         }
-        // 화명 밖으로 내려간 적 비활성화
+
         foreach (GameObject Pipe in PipePool)
         {
             if (Pipe.activeInHierarchy)
             {
-                if (Pipe.transform.position.x < -7.0f)
+                if (Pipe.transform.localPosition.x < -355.0f) // 변경된 부분
                 {
                     Pipe.SetActive(false);
                 }
             }
         }
     }
-
 
     private GameObject GetPooledPipe()
     {
@@ -61,21 +63,20 @@ public class PipeSpawer : MonoBehaviour
                 return Pipe;
             }
         }
-        // 모든 적이 활성화되어 있다면 새로운 적 생성
-        GameObject newPipe = Instantiate(PipePrefab);
+
+        GameObject newPipe = Instantiate(PipePrefab, panelTransform); // 부모 설정
         newPipe.SetActive(false);
         PipePool.Add(newPipe);
         return newPipe;
     }
 
-    // 적 스폰//-2.5 4.8
-        private void SpawnPipe()
-        {
+    private void SpawnPipe()
+    {
         GameObject Pipe = GetPooledPipe();
-        float randomY = Random.Range(-3.0f, 7.0f); // 랜덤 Y위치
-        Pipe.transform.position = new Vector3(10, randomY, 0);
+        float randomY = Random.Range(-500f, 725f);
+
+        // 패널 내부의 로컬 포지션으로 설정
+        Pipe.transform.localPosition = new Vector3(1008f, randomY, 0); // 변경된 부분
         Pipe.SetActive(true);
-
-        }
+    }
 }
-
